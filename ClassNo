@@ -1,0 +1,24 @@
+class No():
+    proximo = '' # Aponta para o próximo nó da lista
+    elemento = '' # Armazena o elemento de cada nó
+    def No(self, elemento, proximo): # Construtor da classe
+        self.elemento = elemento
+        self.proximo = proximo
+
+    def SetProximo(self, proximo): # Método que altera próximo nó da lista
+        self.proximo = proximo
+
+    def getProximo(self): # Método que recebe o próximo No da Lista
+        return self.proximo
+    
+    def setElemento(self, elemento): # Método para alterar o elemento
+        self.elemento = elemento
+
+    def getElemento(self): # Método para receber o objeto contido no nó
+        return self.elemento
+    
+class Lista():
+    inicio = ''
+    def lista(self, inicio): # Construtor da classe Lista inicializada vazia
+        self.inicio = inicio
+        
