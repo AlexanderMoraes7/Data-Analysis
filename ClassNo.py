@@ -1,10 +1,10 @@
 class No():
-    proximo = str # Aponta para o próximo nó da lista
-    elemento : object = str # Armazena o elemento de cada nó
-    def No(self, elemento : object, proximo): # Construtor da classe
+    #proximo = str # Aponta para o próximo nó da lista
+    #elemento : object = str # Armazena o elemento de cada nó
+    def __init__(self, elemento : object, proximo): # Construtor da classe
         self.elemento = elemento
         self.proximo = proximo
-    def SetProximo(self, proximo : No): # Método que altera próximo nó da lista
+    def SetProximo(self, proximo): # Método que altera próximo nó da lista
         self.proximo = proximo
     def getProximo(self): # Método que recebe o próximo No da Lista
         return self.proximo
@@ -14,13 +14,13 @@ class No():
         return self.elemento
     
 class Lista():
-    inicio = str
-    def Lista(self): # Construtor da classe Lista inicializada vazia
+    def __init__(self): # Construtor da classe Lista inicializada vazia
         self.inicio = None
-    def insereInicio(elemento):
-        novoNo = No(elemento) # Passo 1 da figura 3
-        novoNo.SetProximo(Lista.inicio) # Passo 2 da figura 3
-        Lista.inicio = novoNo # Passo 3 da figura 3
+    def insereInicio(self, elemento):
+        novoNo : No = (elemento) # Passo 1 da figura 3
+        novoNo = No(elemento, None)
+        No.SetProximo(self.inicio) # Passo 2 da figura 3
+        self.inicio = novoNo # Passo 3 da figura 3
     def removeInicio(self):
         auxiliar = self.inicio
         self.inicio = auxiliar.getProximo()
@@ -29,7 +29,7 @@ class Lista():
         self.auxiliar = self.inicio # Auxiliar percorre a lista do início ao fim
         print("Início da Lista Ligada\n")
         while self.auxiliar != None: # Testa se ainda não chegou no final da Lista
-            print(self.auxiliar.getElemento) # Imprime com o método String
+            print(self.auxiliar.getElemento + "\n") # Imprime com o método String
             self.auxiliar = self.auxiliar.getProximo() # Passa para o próximo Nó da lista
         print("Final da Lista Ligada\n")
     def buscaElemento(self, posicao = int): # Busca o elemento na posição da lista
@@ -43,19 +43,15 @@ class Lista():
     def liberaLista(self): # Libera todos os nós a lista
         while self.inicio != None:
             self.inicio = self.inicio.getProximo()
-            # O Garbage collector de Java liberaria automaticamente o nó eliminado
+            # O Garbage collector do Java liberaria automaticamente o nó eliminado
 
 class Cliente():
-    codigo = 0
-    razaoSocial = str
-    endereco = str
-    previsaoVendas = float
-    def Cliente(self, c = int, r = str, e = str, p = float): # Construtor da Classe Cliente
+    def __init__(self, c = int, r = str, e = str, p = float): # Construtor da Classe Cliente
         self.codigo = c
         self.razaoSocial = r
         self.endereco = e
         self.previsaoVendas = p
-    def toString(self):
+    def __str__(self):
         return "Codigo: " + self.codigo + " Razão Social: " + self.razaoSocial
     def atualizaRazaoSocial(self, r = str):
         self.razaoSocial = r
@@ -65,9 +61,9 @@ class Cliente():
         self.endereco = e
 
 listaClientes : Lista = Lista() # Cria a lista de clientes
-c = Cliente.Cliente(221, "Produtos excelentes LTDA", "Rua sem fim, 200", 5000.0)
+c = Cliente(221, "Produtos excelentes LTDA", "Rua sem fim, 200", 5000.0)
 # Inserindo elementos na Lista Ligada
-listaClientes.insereInicio(Cliente.codigo) # Usando uma variável cliente
+listaClientes.insereInicio(c) # Usando uma variável cliente
 listaClientes.imprimeLista()
 listaClientes.insereInicio(Cliente(185, "Negócios Importantes SA", "Avenida Principal, 10", 12000.0))
 listaClientes.insereInicio(Cliente(443, "Parceiros Críticos LTDA", "Rua dos negócios, 2000", 7000.0))
